@@ -10,12 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_15_030116) do
+ActiveRecord::Schema.define(version: 2022_11_15_030906) do
 
   create_table "houses", force: :cascade do |t|
     t.string "name"
     t.string "image_link"
     t.string "location"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "text"
+    t.string "rating"
+    t.integer "user_id"
+    t.integer "house_id"
+    t.index ["house_id"], name: "index_reviews_on_house_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
   end
 
 end
