@@ -1,10 +1,27 @@
 puts "🌱 Seeding spices..."
 
+def random_link
+    houses = [
+        'https://i.imgur.com/EMNcLjX.jpg',
+        'https://i.imgur.com/N8mahSF.jpg',
+        'https://i.imgur.com/TauLMLD.jpg',
+        'https://i.imgur.com/GguqP7i.jpg',
+        'https://i.imgur.com/Xtwl6pY.jpg',
+        'https://i.imgur.com/lA3yJX3.jpg',
+        'https://i.imgur.com/FD2J3rx.jpg',
+        'https://i.imgur.com/5Yidj9e.jpg',
+        'https://i.imgur.com/qUYoN6j.jpg',
+        'https://i.imgur.com/BTu1FB1.jpg',
+        
+    ]
+    houses.sample
+end
+
 50.times do
     House.create(
         name: Faker::Books::Lovecraft.deity,
         location: Faker::Books::Lovecraft.location,
-        image_link: 'https://i.imgur.com/EMNcLjX.jpg'
+        image_link: random_link
     )
 end
 

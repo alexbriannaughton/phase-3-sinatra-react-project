@@ -2,8 +2,50 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
+  get "/houses" do
+    houses = House.all
+    houses.to_json
   end
+
+  get '/houses/:id' do
+    house = House.find(params[:id])
+    house.to_json(include: { reviews: { include: :user } })
+  end
+
+  post "/houses" do
+    house = House.create(
+      name: params[:name],
+      image_link: params[:image_link],
+      location: params[:location]
+    )
+    house.to_json
+  end
+
+  post "/reviews" do
+    review = Review.create(
+      text: params[:text],
+      rating: params[:rating],
+      user_id: params[:user_id],
+      house_id: params[:house_id]
+    )
+    review.to_json
+  end
+
+  patch '/reviews/:id' do
+    review = Review.find(params[:id])
+    review.update(
+      text: params[:text],
+      rating: params[:rating]
+    )
+    review.to_json
+  end
+
+  delete '/reviews/:id' do
+    review = Review.find(params[:id])
+    review.destroy
+    review.to_json
+  end
+
+
 
 end
