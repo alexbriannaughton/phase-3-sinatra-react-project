@@ -12,6 +12,11 @@ class ApplicationController < Sinatra::Base
     house.to_json(include: { reviews: { include: :user } })
   end
 
+  get "/users/:username" do
+    user = User.find_by_username(params[:username])
+    user.to_json
+  end
+
   post "/houses" do
     house = House.create(
       name: params[:name],

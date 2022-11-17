@@ -20,14 +20,15 @@ end
 50.times do
     House.create(
         name: Faker::Books::Lovecraft.deity,
-        location: Faker::Books::Lovecraft.location,
+        location: Faker::Address.city,
         image_link: random_link
     )
 end
 
 50.times do
     User.create(
-        name: Faker::Name.name
+        name: Faker::Name.name,
+        username: Faker::Name.unique.middle_name
     )
     rand(1..3).times do
         Review.create(
