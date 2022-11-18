@@ -36,6 +36,14 @@ class ApplicationController < Sinatra::Base
     review.to_json
   end
 
+  post "/users" do
+    user = User.create(
+      name: params[:name],
+      username: params[:username]
+    )
+    user.to_json
+  end
+
   patch '/reviews/:id' do
     review = Review.find(params[:id])
     review.update(

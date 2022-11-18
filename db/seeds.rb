@@ -17,10 +17,15 @@ def random_link
     houses.sample
 end
 
+def random_house_name
+    name = ["House", "Manor", "Home", "Place", "Palace", "Spot"]
+    name.sample
+end
+
 50.times do
     House.create(
-        name: Faker::Books::Lovecraft.deity,
-        location: Faker::Address.city,
+        name: "#{Faker::Books::Lovecraft.deity} #{random_house_name}",
+        location: "#{Faker::Address.city}, #{Faker::Address.state}",
         image_link: random_link
     )
 end
